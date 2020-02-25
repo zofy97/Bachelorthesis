@@ -71,6 +71,7 @@ public class AudioManager : MonoBehaviour
         if (audioData != null)
         {
             PlayerPrefs.SetString("isMusicOn", audioData.getIsMusicOn().ToString());
+            PlayerPrefs.Save();
         }
     }
 

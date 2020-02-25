@@ -120,9 +120,11 @@
      <Compile Include="Assets\MaterialUI\Scripts\ToggleConfig.cs" />
      <Compile Include="Assets\MaterialUI\Scripts\ToggleTextChanger.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
+     <Compile Include="Assets\Scripts\GameSparksManager.cs" />
      <Compile Include="Assets\Scripts\LevelSelection.cs" />
      <Compile Include="Assets\Scripts\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\PlayerLogin.cs" />
+     <Compile Include="Assets\Scripts\PopulateGrid.cs" />
      <Compile Include="Assets\Scripts\SceneSwitcher.cs" />
      <Compile Include="Assets\Scripts\ScriptExamples\AdsManager.cs" />
      <Compile Include="Assets\Scripts\ScriptExamples\CheckButtonPress.cs" />
