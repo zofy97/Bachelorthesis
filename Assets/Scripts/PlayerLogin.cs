@@ -62,6 +62,7 @@ public class PlayerLogin : MonoBehaviour
     private string GetUserData()
     {
         var displayName = "Guest";
+        
         new GameSparks.Api.Requests.AccountDetailsRequest()
             .Send((response) =>
             {
