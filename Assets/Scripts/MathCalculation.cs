@@ -1,13 +1,60 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Object = System.Object;
 using Random = System.Random;
 
 public class MathCalculation : MonoBehaviour
 {
+    public static MathCalculation instance;
+
+    private float a, b;
+    public float answer;
+    
+    public Text valueA , valueB;
+    public Text operationSign;
+    public GameObject[] answerButtons;
+    
+    
     private int firstNumber;
     private int secondNumber;
     private MathOperations mathOperation;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        GetOperation();
+    }
+    
+    void GetOperation()
+    {
+        var operation = PlayerPrefs.GetString("operation");
+        
+        if (operation == "addition")
+        {
+            mathOperation = MathOperations.Addition;
+
+        }
+        else if (operation == "subtraction")
+        {
+            mathOperation = MathOperations.Subtraction;
+        }
+        else if (operation == "multiplication")
+        {
+            mathOperation = MathOperations.Multiplication;
+        }
+        else if (operation == "division")
+        {
+            mathOperation = MathOperations.Division;
+        }
+    }
 
     private object[] CreateMathTask(MathOperations mathOperator)
     {
@@ -40,35 +87,77 @@ public class MathCalculation : MonoBehaviour
         extraAnswers[1] = result - random.Next(3, 6);
         extraAnswers[2] = result * random.Next(0, 2);
         
-        var task = new Object[] {a, b, mathOperator, result};
+        var task = new object[] {a, b, mathOperator, result};
 
         return task;
     }
 
+    void Addition()
+    {
+        var numbers = GenerateRandomNumbers();
+        a = numbers[0];
+        b = numbers[1];
+
+        answer = a + b;
+
+        valueA.text = a.ToString();
+        valueB.text = b.ToString();
+        operationSign.text = "+";
+    }
+
+    void Subtraction()
+    {
+        
+    }
+
+    void Multiplication()
+    {
+        
+    }
+
+    void Division()
+    {
+        
+    }
+
     private int[] GenerateRandomNumbers()
     {
-        Random r = new Random();
+        var r = new Random();
         firstNumber = r.Next(1, 10);
         secondNumber = r.Next(1, 10);
         
         return new[] {firstNumber, secondNumber};
     }
+    
 
-    public void SelectAdditionSubtraction()
+    public object[] SelectAdditionSubtraction()
     {
-        var taskSet = new Object[9];
+        PlayerPrefs.SetString("operation", "addition");
+        
+        var taskSet = new object[9];
         for (var i = 1; i < taskSet.Length; i++)
         {
             taskSet[i-1] = CreateMathTask(MathOperations.Addition);
             taskSet[i] = CreateMathTask(MathOperations.Subtraction);
             i++;
         }
+
+        return taskSet;
     }
 
-    public void SelectMultiplicationDivision()
+    public object[] SelectMultiplicationDivision()
     {
-        CreateMathTask(MathOperations.Multiplication);
-        CreateMathTask(MathOperations.Division);
+        PlayerPrefs.SetString("operation", "multiplication");
+        
+        var taskSet = new object[9];
+        for (var i = 1; i < taskSet.Length; i++)
+        {
+            taskSet[i-1] = CreateMathTask(MathOperations.Multiplication);
+            taskSet[i] = CreateMathTask(MathOperations.Division);
+            i++;
+        }
+
+        return taskSet;
     }
 }
 
