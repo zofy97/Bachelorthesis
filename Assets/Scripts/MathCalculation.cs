@@ -32,27 +32,25 @@ public class MathCalculation : MonoBehaviour
     {
         GetOperation();
     }
-    
-    void GetOperation()
+
+    private void GetOperation()
     {
         var operation = PlayerPrefs.GetString("operation");
-        
-        if (operation == "addition")
-        {
-            mathOperation = MathOperations.Addition;
 
-        }
-        else if (operation == "subtraction")
+        switch (operation)
         {
-            mathOperation = MathOperations.Subtraction;
-        }
-        else if (operation == "multiplication")
-        {
-            mathOperation = MathOperations.Multiplication;
-        }
-        else if (operation == "division")
-        {
-            mathOperation = MathOperations.Division;
+            case "lineCalculation":
+                mathOperation = MathOperations.LineCalculation;
+                break;
+            case "pointCalculation":
+                mathOperation = MathOperations.PointCalculation;
+                break;
+            case "smallerOrBigger":
+                mathOperation = MathOperations.SmallerOrBigger;
+                break;
+            case "mixed":
+                mathOperation = MathOperations.Mixed;
+                break;
         }
     }
 
@@ -66,17 +64,23 @@ public class MathCalculation : MonoBehaviour
         var result = 0;
         switch (mathOperator)
         {
-            case MathOperations.Addition:
-                result = a + b;
+            case MathOperations.LineCalculation:
+                Addition();
+                Subtraction();
                 break;
-            case MathOperations.Subtraction:
-                result = a - b;
+            case MathOperations.PointCalculation:
+                Multiplication();
+                Division();
                 break;
-            case MathOperations.Multiplication:
-                result = a * b;
+            case MathOperations.SmallerOrBigger:
+                SmallerOrBigger();
                 break;
-            case MathOperations.Division:
-                result = a / b;
+            case MathOperations.Mixed:
+                Addition();
+                Subtraction();
+                Multiplication();
+                Division();
+                SmallerOrBigger();
                 break;
         }
         
@@ -91,8 +95,17 @@ public class MathCalculation : MonoBehaviour
 
         return task;
     }
+    
+    private int[] GenerateRandomNumbers()
+    {
+        var r = new Random();
+        firstNumber = r.Next(1, 10);
+        secondNumber = r.Next(1, 10);
+        
+        return new[] {firstNumber, secondNumber};
+    }
 
-    void Addition()
+    private void Addition()
     {
         var numbers = GenerateRandomNumbers();
         a = numbers[0];
@@ -105,30 +118,67 @@ public class MathCalculation : MonoBehaviour
         operationSign.text = "+";
     }
 
-    void Subtraction()
+    private void  Subtraction()
     {
-        
+        int[] numbers = GenerateRandomNumbers();
+        while (numbers[0] < numbers[1])
+            numbers = GenerateRandomNumbers();
+        a = numbers[0];
+        b = numbers[1];
+
+        answer = a - b;
+
+        valueA.text = a.ToString();
+        valueB.text = b.ToString();
+        operationSign.text = "-";   
     }
 
-    void Multiplication()
+    private void  Multiplication()
     {
-        
+        var numbers = GenerateRandomNumbers();
+        a = numbers[0];
+        b = numbers[1];
+
+        answer = a * b;
+
+        valueA.text = a.ToString();
+        valueB.text = b.ToString();
+        operationSign.text = "*";
     }
 
-    void Division()
+    private void Division()
     {
-        
+        var numbers = GenerateRandomNumbers();
+        while (numbers[0] % numbers[1] != 0)
+            numbers = GenerateRandomNumbers();
+        a = numbers[0];
+        b = numbers[1];
+
+        answer = a - b;
+
+        valueA.text = a.ToString();
+        valueB.text = b.ToString();
+        operationSign.text = "-"; 
     }
 
-    private int[] GenerateRandomNumbers()
+    private void SmallerOrBigger()
     {
-        var r = new Random();
-        firstNumber = r.Next(1, 10);
-        secondNumber = r.Next(1, 10);
+        var numbers = GenerateRandomNumbers();
+        a = numbers[0];
+        b = numbers[1];
+
+        answer = a * b;
+
+        valueA.text = a.ToString();
+        valueB.text = b.ToString();
         
-        return new[] {firstNumber, secondNumber};
+        if (a < b)
+            operationSign.text = "<";
+        else if (a > b)
+            operationSign.text = ">";
+        else
+            operationSign.text = "=";
     }
-    
 
     public object[] SelectAdditionSubtraction()
     {
@@ -137,8 +187,8 @@ public class MathCalculation : MonoBehaviour
         var taskSet = new object[9];
         for (var i = 1; i < taskSet.Length; i++)
         {
-            taskSet[i-1] = CreateMathTask(MathOperations.Addition);
-            taskSet[i] = CreateMathTask(MathOperations.Subtraction);
+            //taskSet[i-1] = CreateMathTask(MathOperations.Addition);
+            //taskSet[i] = CreateMathTask(MathOperations.Subtraction);
             i++;
         }
 
@@ -152,8 +202,8 @@ public class MathCalculation : MonoBehaviour
         var taskSet = new object[9];
         for (var i = 1; i < taskSet.Length; i++)
         {
-            taskSet[i-1] = CreateMathTask(MathOperations.Multiplication);
-            taskSet[i] = CreateMathTask(MathOperations.Division);
+            //taskSet[i-1] = CreateMathTask(MathOperations.Multiplication);
+            //taskSet[i] = CreateMathTask(MathOperations.Division);
             i++;
         }
 
@@ -163,8 +213,8 @@ public class MathCalculation : MonoBehaviour
 
 public enum MathOperations
 {
-    Addition,
-    Subtraction,
-    Multiplication,
-    Division
+    LineCalculation,
+    PointCalculation,
+    SmallerOrBigger,
+    Mixed
 }

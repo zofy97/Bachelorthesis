@@ -36,8 +36,6 @@ public class PlayerLogin : MonoBehaviour
         {
             SetUserData("Guest");
         }
-        
-        
     }
 
     private void SetUserData(string displayName)

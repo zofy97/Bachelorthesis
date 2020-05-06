@@ -1,30 +1,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class GameContentManager : MonoBehaviour
 {
-    public void AdditionMode()
+    public void LineCalculationMode()
     {
-        PlayerPrefs.SetString("operation", "addition");
+        PlayerPrefs.SetString("operation", "lineCalculation");
         SceneManager.LoadScene("GameScene");
     }
     
-    public void SubtractionMode()
+    public void PointCalculationMode()
     {
-        PlayerPrefs.SetString("operation", "subtraction");
+        PlayerPrefs.SetString("operation", "pointCalculation");
         SceneManager.LoadScene("GameScene");
     }
     
-    public void MultiplicationMode()
+    public void SmallerOrBiggerMode()
     {
-        PlayerPrefs.SetString("operation", "multiplication");
+        PlayerPrefs.SetString("operation", "smallerOrBigger");
         SceneManager.LoadScene("GameScene");
     }
     
-    public void DivisionMode()
+    public void MixedMode()
     {
-        PlayerPrefs.SetString("operation", "division");
+        PlayerPrefs.SetString("operation", "mixed");
         SceneManager.LoadScene("GameScene");
     }
 }
