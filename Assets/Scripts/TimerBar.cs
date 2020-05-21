@@ -27,7 +27,7 @@ public class TimerBar : MonoBehaviour
             seconds.text = Mathf.RoundToInt(countDownTime).ToString();
 
             if (countDownTime < 0)
-                SceneManager.LoadScene("LevelScene");
+                SceneManager.LoadScene("TaskOverviewScene");
         }
     }
 
