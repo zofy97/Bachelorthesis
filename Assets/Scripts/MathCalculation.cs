@@ -17,11 +17,14 @@ public class MathCalculation : MonoBehaviour
     public Text[] answerButtons;
 
     public GameObject startDialog;
+    public GameObject gameElements;
 
 
     private int firstNumber;
     private int secondNumber;
     private MathOperations mathOperation;
+    private int counter = 0;
+    private int answerLocation;
 
     void Awake()
     {
@@ -60,7 +63,10 @@ public class MathCalculation : MonoBehaviour
     public void StartMathTask()
     {
         if (startDialog.active)
+        {
             startDialog.SetActive(false);
+            gameElements.SetActive(true);
+        }
 
         CreateMathTask(mathOperation);
         Debug.Log(mathOperation);
@@ -83,21 +89,25 @@ public class MathCalculation : MonoBehaviour
 
     private object[] CreateMathTask(MathOperations mathOperator)
     {
-        var numbers = GenerateRandomNumbers();
+        //var numbers = GenerateRandomNumbers();
 
-        var a = numbers[0];
-        var b = numbers[1];
+        //var a = numbers[0];
+        //var b = numbers[1];
 
-        var result = 0;
         switch (mathOperator)
         {
             case MathOperations.LineCalculation:
-                Addition();
-                Subtraction();
+                if (counter % 2 == 0)
+                    Addition();
+                else
+                    Subtraction();
+                
                 break;
             case MathOperations.PointCalculation:
-                Multiplication();
-                Division();
+                if (counter % 2 == 0)
+                    Multiplication();
+                else
+                    Division();
                 break;
             case MathOperations.SmallerOrBigger:
                 SmallerOrBigger();
@@ -107,38 +117,48 @@ public class MathCalculation : MonoBehaviour
                 Subtraction();
                 Multiplication();
                 Division();
+                counter++;
                 SmallerOrBigger();
                 break;
         }
 
-        var extraAnswers = new int[3];
+        var extraAnswers = new int[4];
         var random = new Random();
 
-        extraAnswers[0] = result + random.Next(1, 5);
-        extraAnswers[1] = result - random.Next(3, 6);
-        extraAnswers[2] = result * random.Next(0, 2);
+        extraAnswers[0] = (int) answer + random.Next(3, 11);
+        extraAnswers[1] = (int) answer - random.Next(7, 10);
+        extraAnswers[2] = (int) answer * random.Next(2, 4);
+        extraAnswers[3] = (int) answer - random.Next(4, 7);
+        
 
-        answerButtons[0].text = extraAnswers[0].ToString();
-        answerButtons[1].text = extraAnswers[1].ToString();
-        answerButtons[2].text = extraAnswers[2].ToString();
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            if (extraAnswers[i] == answer)
+                extraAnswers[i]++;
+            if (i != answerLocation)
+                answerButtons[i].text = extraAnswers[i].ToString();
+        }
+        //answerButtons[0].text = extraAnswers[0].ToString();
+        //answerButtons[1].text = extraAnswers[1].ToString();
+        //answerButtons[2].text = extraAnswers[2].ToString();
 
-        var task = new object[] {a, b, mathOperator, result};
+        var task = new object[] {a, b, mathOperator, answer};
 
         return task;
     }
 
-    private int[] GenerateRandomNumbers()
+    private int[] GenerateRandomNumbers(int min, int max)
     {
         var r = new Random();
-        firstNumber = r.Next(1, 10);
-        secondNumber = r.Next(1, 10);
+        firstNumber = r.Next(min, max);
+        secondNumber = r.Next(min, max);
 
         return new[] {firstNumber, secondNumber};
     }
 
     private void Addition()
     {
-        var numbers = GenerateRandomNumbers();
+        var numbers = GenerateRandomNumbers(1, 15);
         a = numbers[0];
         b = numbers[1];
 
@@ -147,14 +167,19 @@ public class MathCalculation : MonoBehaviour
         valueA.text = a.ToString();
         valueB.text = b.ToString();
         operationSign.text = "+";
-        answerButtons[3].text = answer.ToString();
+
+        var random = new Random();
+        answerLocation  = random.Next(0, 3);
+        answerButtons[answerLocation].text = answer.ToString();
+
+        counter++;
     }
 
     private void Subtraction()
     {
-        int[] numbers = GenerateRandomNumbers();
+        int[] numbers = GenerateRandomNumbers(1, 15);
         while (numbers[0] < numbers[1])
-            numbers = GenerateRandomNumbers();
+            numbers = GenerateRandomNumbers(1,15);
         a = numbers[0];
         b = numbers[1];
 
@@ -163,12 +188,17 @@ public class MathCalculation : MonoBehaviour
         valueA.text = a.ToString();
         valueB.text = b.ToString();
         operationSign.text = "-";
-        answerButtons[3].text = answer.ToString();
+        
+        var random = new Random();
+        answerLocation  = random.Next(0, 3);
+        answerButtons[answerLocation].text = answer.ToString();
+
+        counter++;
     }
 
     private void Multiplication()
     {
-        var numbers = GenerateRandomNumbers();
+        var numbers = GenerateRandomNumbers(1, 10);
         a = numbers[0];
         b = numbers[1];
 
@@ -177,14 +207,17 @@ public class MathCalculation : MonoBehaviour
         valueA.text = a.ToString();
         valueB.text = b.ToString();
         operationSign.text = "*";
-        answerButtons[3].text = answer.ToString();
+        
+        var random = new Random();
+        answerLocation  = random.Next(0, 3);
+        answerButtons[answerLocation].text = answer.ToString();
     }
 
     private void Division()
     {
-        var numbers = GenerateRandomNumbers();
+        var numbers = GenerateRandomNumbers(1, 30);
         while (numbers[0] % numbers[1] != 0)
-            numbers = GenerateRandomNumbers();
+            numbers = GenerateRandomNumbers(1, 30);
         a = numbers[0];
         b = numbers[1];
 
@@ -192,17 +225,18 @@ public class MathCalculation : MonoBehaviour
 
         valueA.text = a.ToString();
         valueB.text = b.ToString();
-        operationSign.text = "-";
-        answerButtons[3].text = answer.ToString();
+        operationSign.text = "/";
+        
+        var random = new Random();
+        answerLocation  = random.Next(0, 3);
+        answerButtons[answerLocation].text = answer.ToString();
     }
 
     private void SmallerOrBigger()
     {
-        var numbers = GenerateRandomNumbers();
+        var numbers = GenerateRandomNumbers(1, 99);
         a = numbers[0];
         b = numbers[1];
-
-        answer = a * b;
 
         valueA.text = a.ToString();
         valueB.text = b.ToString();
