@@ -64,8 +64,6 @@
      <Compile Include="Assets\GameSparks\Editor\GameSparksRestWindow.cs" />
      <Compile Include="Assets\GameSparks\Editor\GameSparksSettingsEditor.cs" />
      <Compile Include="Assets\GameSparks\Editor\GameSparksUnityInspector.cs" />
-     <Compile Include="Assets\InteractiveMobileMenu\Scripts\Editor\_cameraControls.cs" />
-     <Compile Include="Assets\InteractiveMobileMenu\Scripts\Editor\_levelSelectionLogic.cs" />
      <Compile Include="Assets\MaterialUI\Editor\CheckboxConfigEditor.cs" />
      <Compile Include="Assets\MaterialUI\Editor\EZAnimEditor.cs" />
      <Compile Include="Assets\MaterialUI\Editor\MaterialUIEditorTools.cs" />
@@ -338,9 +336,6 @@
  </Reference>
  <Reference Include="BouncyCastle_GameSparks">
  <HintPath>/Users/sophieschauer/Bachelorthesis/Assets/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
- </Reference>
- <Reference Include="Mono.Data.Sqlite">
- <HintPath>/Users/sophieschauer/Bachelorthesis/Assets/SQLite/Plugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>/Users/sophieschauer/Bachelorthesis/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

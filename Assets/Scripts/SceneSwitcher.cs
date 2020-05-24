@@ -3,19 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitcher : MonoBehaviour
 {
-    public string SceneName;
-
-    public string SceneNameBack;
-    
-    public void GoToScene()
+    public void GoToScene(string sceneName)
     {
-        Debug.Log(SceneName);
-        SceneManager.LoadScene(SceneName);
-    }
-
-    public void GoBackToScene()
-    {
-        Debug.Log(SceneNameBack);
-        SceneManager.LoadScene(SceneNameBack);
+        SceneManager.LoadScene(sceneName);
     }
 }

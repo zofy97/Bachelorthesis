@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="BayatGames" t="Include">
+          <e p="Free Platform Game Assets" t="Include">
+            <e p="README.txt" t="Include" />
+          </e>
+        </e>
+        <e p="GameSparks" t="Include">
+          <e p="Editor" t="Include">
+            <e p="GameSparksEditorFormUpload.cs" t="Include" />
+            <e p="GameSparksPopUp.cs" t="Include" />
+            <e p="GameSparksRestApi.cs" t="Include" />
+            <e p="GameSparksRestWindow.cs" t="Include" />
+            <e p="GameSparksSettingsEditor.cs" t="Include" />
+            <e p="GameSparksUnityInspector.cs" t="Include" />
+          </e>
+          <e p="GameSparksRTUnity.cs" t="Include" />
+          <e p="GameSparksSettings.cs" t="Include" />
+          <e p="GameSparksUnity.cs" t="Include" />
+          <e p="link.xml" t="Include" />
+          <e p="Platforms" t="Include">
+            <e p="DefaultPlatform.cs" t="Include" />
+            <e p="IControlledTimer.cs" t="Include" />
+            <e p="IControlledWebSocket.cs" t="Include" />
+            <e p="Native" t="Include">
+              <e p="detail" t="Include">
+                <e p="GameSparksNative.cs" t="Include" />
+                <e p="GameSparksNativePINVOKE.cs" t="Include" />
+                <e p="NativeWebSocket.cs" t="Include" />
+              </e>
+              <e p="NativePlatform.cs" t="Include" />
+              <e p="NativeWebSocket.cs" t="Include" />
+            </e>
+            <e p="PlatformBase.cs" t="Include" />
+            <e p="TimerController.cs" t="Include" />
+            <e p="UnityTimer.cs" t="Include" />
+            <e p="WebGL" t="Include">
+              <e p="SimpleJson2.cs" t="Include" />
+              <e p="WebGLPlatform.cs" t="Include" />
+              <e p="WebGLWebSocket.cs" t="Include" />
+            </e>
+            <e p="WebSocketController.cs" t="Include" />
+          </e>
+          <e p="Plugins" t="Include">
+            <e p="GameSparksRT.xml" t="Include" />
+            <e p="Metro" t="Include">
+              <e p="GameSparksRT.xml" t="Include" />
+            </e>
+          </e>
+          <e p="README.txt" t="Include" />
+          <e p="TestUI" t="Include">
+            <e p="GameSparksTestUI.cs" t="Include" />
+          </e>
+        </e>
+        <e p="InteractiveMobileMenu" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="CameraControls.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="_cameraControls.cs" t="Include" />
+              <e p="_levelSelectionLogic.cs" t="Include" />
+            </e>
+            <e p="LevelSelectionLogic.cs" t="Include" />
+            <e p="Saving and Loading" t="Include">
+              <e p="PlayerPrefsX.cs" t="Include" />
+              <e p="SaveAndLoad.cs" t="Include" />
+            </e>
+            <e p="Temp" t="Include">
+              <e p="FinishLevel.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="MaterialUI" t="Include">
+          <e p="Editor" t="Include">
+            <e p="CheckboxConfigEditor.cs" t="Include" />
+            <e p="EZAnimEditor.cs" t="Include" />
+            <e p="MaterialUIEditorTools.cs" t="Include" />
+            <e p="RectTransformSnapEditor.cs" t="Include" />
+            <e p="RippleConfigEditor.cs" t="Include" />
+            <e p="ScreenConfigEditor.cs" t="Include" />
+            <e p="ShadowGenEditor.cs" t="Include" />
+            <e p="SnapButtonToTextEditor.cs" t="Include" />
+            <e p="TexturePostProcessor.cs" t="Include" />
+          </e>
+          <e p="Examples" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="04 - RadioButton" t="Include">
+                <e p="Example04.cs" t="Include" />
+              </e>
+              <e p="05 - Sliders" t="Include">
+                <e p="Example05.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Fonts" t="Include">
+            <e p="NOTICE.txt" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="Anim.cs" t="Include" />
+            <e p="ButtonInteractableControl.cs" t="Include" />
+            <e p="CheckboxConfig.cs" t="Include" />
+            <e p="CheckboxFillerControl.cs" t="Include" />
+            <e p="CheckBoxToggler.cs" t="Include" />
+            <e p="ColorCopier.cs" t="Include" />
+            <e p="DialogBoxConfig.cs" t="Include" />
+            <e p="EZAnim.cs" t="Include" />
+            <e p="FPSCounter.cs" t="Include" />
+            <e p="HSBColor.cs" t="Include" />
+            <e p="InputFieldConfig.cs" t="Include" />
+            <e p="MaterialGlobals.cs" t="Include" />
+            <e p="MaterialUIScaler.cs" t="Include" />
+            <e p="MaterialUIVersion.cs" t="Include" />
+            <e p="MenuArrowAnim.cs" t="Include" />
+            <e p="NavDrawerConfig.cs" t="Include" />
+            <e p="RadioConfig.cs" t="Include" />
+            <e p="RectTransformSnap.cs" t="Include" />
+            <e p="RippleAnim.cs" t="Include" />
+            <e p="RippleConfig.cs" t="Include" />
+            <e p="RippleControl.cs" t="Include" />
+            <e p="ScreenConfig.cs" t="Include" />
+            <e p="ScreenManager.cs" t="Include" />
+            <e p="SelectionBoxConfig.cs" t="Include" />
+            <e p="SelectionBoxSubscriber.cs" t="Include" />
+            <e p="SelectionListItemConfig.cs" t="Include" />
+            <e p="ShadowAnim.cs" t="Include" />
+            <e p="ShadowConfig.cs" t="Include" />
+            <e p="ShadowGen.cs" t="Include" />
+            <e p="ShadowSnap.cs" t="Include" />
+            <e p="SliderConfig.cs" t="Include" />
+            <e p="SnapButtonToText.cs" t="Include" />
+            <e p="SpriteSwapper.cs" t="Include" />
+            <e p="SwitchConfig.cs" t="Include" />
+            <e p="TextInputLine.cs" t="Include" />
+            <e p="ToastAnim.cs" t="Include" />
+            <e p="ToastControl.cs" t="Include" />
+            <e p="Toaster.cs" t="Include" />
+            <e p="ToggleConfig.cs" t="Include" />
+            <e p="ToggleTextChanger.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="AudioManager.cs" t="Include" />
+          <e p="GameSparksManager.cs" t="Include" />
+          <e p="LevelSelection.cs" t="Include" />
+          <e p="MainMenuController.cs" t="Include" />
+          <e p="PlayerLogin.cs" t="Include" />
+          <e p="PopulateGrid.cs" t="Include" />
+          <e p="PopulateLevel.cs" t="Include" />
+          <e p="SceneSwitcher.cs" t="Include" />
+          <e p="ScriptExamples" t="Include">
+            <e p="AdsManager.cs" t="Include" />
+            <e p="CheckButtonPress.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
+            <e p="GUIManager.cs" t="Include" />
+            <e p="MathsAndAnswerScript.cs" t="Include" />
+            <e p="ModeMenuManager.cs" t="Include" />
+            <e p="ShareScreenScript.cs" t="Include" />
+            <e p="TimerBarController.cs" t="Include" />
+          </e>
+          <e p="SettingsController.cs" t="Include" />
+          <e p="TimerBar.cs" t="Include" />
+        </e>
+        <e p="TextMesh Pro" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+            <e p="Shaders" t="Include">
+              <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+              <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+              <e p="TMP_Bitmap.shader" t="Include" />
+              <e p="TMP_SDF Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface.shader" t="Include" />
+              <e p="TMP_SDF.shader" t="Include" />
+              <e p="TMP_Sprite.shader" t="Include" />
+              <e p="TMPro.cginc" t="Include" />
+              <e p="TMPro_Properties.cginc" t="Include" />
+              <e p="TMPro_Surface.cginc" t="Include" />
+            </e>
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution.txt" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Lernspiel.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
+    </e>
+    <e p="$PROJECT_DIR$/../Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
+    <e p="$PROJECT_DIR$/../Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_Lernspiel.1518687641.00" t="ExcludeRecursive" />
+  </component>
+</project>

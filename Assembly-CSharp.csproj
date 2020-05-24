@@ -77,11 +77,6 @@
      <Compile Include="Assets\GameSparks\Platforms\WebGL\WebGLWebSocket.cs" />
      <Compile Include="Assets\GameSparks\Platforms\WebSocketController.cs" />
      <Compile Include="Assets\GameSparks\TestUI\GameSparksTestUI.cs" />
-     <Compile Include="Assets\InteractiveMobileMenu\Scripts\CameraControls.cs" />
-     <Compile Include="Assets\InteractiveMobileMenu\Scripts\LevelSelectionLogic.cs" />
-     <Compile Include="Assets\InteractiveMobileMenu\Scripts\Saving and Loading\PlayerPrefsX.cs" />
-     <Compile Include="Assets\InteractiveMobileMenu\Scripts\Saving and Loading\SaveAndLoad.cs" />
-     <Compile Include="Assets\InteractiveMobileMenu\Scripts\Temp\FinishLevel.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\04 - RadioButton\Example04.cs" />
      <Compile Include="Assets\MaterialUI\Examples\Scripts\05 - Sliders\Example05.cs" />
      <Compile Include="Assets\MaterialUI\Scripts\Anim.cs" />
@@ -126,12 +121,13 @@
      <Compile Include="Assets\MaterialUI\Scripts\ToggleTextChanger.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\CoinsCounter.cs" />
+     <Compile Include="Assets\Scripts\GameContentManager.cs" />
      <Compile Include="Assets\Scripts\GameSparksManager.cs" />
+     <Compile Include="Assets\Scripts\LeaderboardManager.cs" />
      <Compile Include="Assets\Scripts\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\MathCalculation.cs" />
      <Compile Include="Assets\Scripts\PlayerLogin.cs" />
      <Compile Include="Assets\Scripts\PopulateGrid.cs" />
-     <Compile Include="Assets\Scripts\SQLiteTest.cs" />
      <Compile Include="Assets\Scripts\SceneSwitcher.cs" />
      <Compile Include="Assets\Scripts\ScriptExamples\AdsManager.cs" />
      <Compile Include="Assets\Scripts\ScriptExamples\CheckButtonPress.cs" />
@@ -160,13 +156,11 @@
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-     <None Include="Assets\INKA\Shader\TextureDoubleSidedAlpha.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
-     <None Include="Assets\INKA\Shader\TextureDoubleSided.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
  <Reference Include="Unity.Timeline.Editor">
@@ -405,9 +399,6 @@
  </Reference>
  <Reference Include="BouncyCastle_GameSparks">
  <HintPath>/Users/sophieschauer/Bachelorthesis/Assets/GameSparks/Plugins/BouncyCastle_GameSparks.dll</HintPath>
- </Reference>
- <Reference Include="Mono.Data.Sqlite">
- <HintPath>/Users/sophieschauer/Bachelorthesis/Assets/SQLite/Plugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

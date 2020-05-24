@@ -5,19 +5,34 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager singleton;
-
-    private AudioData audioData;
-
     public bool isMusicOn;
 
+    private AudioData audioData;
     private AudioSource backgroundMusic;
 
+    // call methods once audio manager is active
     private void Awake()
     {
         CreateSingleton();
         InitializeVariables();
     }
 
+    // get audio source component
+    private void Start()
+    {
+        backgroundMusic = GetComponent<AudioSource>();
+    }
+
+    // stop background music when in game mode
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().ToString() == "GameScene")
+        {
+            backgroundMusic.Stop();
+        }
+    }
+    
+    // make sure only one audio manager instance is active
     void CreateSingleton()
     {
         if (singleton != null)
@@ -31,19 +46,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        backgroundMusic = GetComponent<AudioSource>();
-    }
-
-    private void Update()
-    {
-        if (SceneManager.GetActiveScene().ToString() == "GameScene")
-        {
-            backgroundMusic.Stop();
-        }
-    }
-
+    // initialize value for sound variables
     void InitializeVariables()
     {
         Load();
@@ -51,13 +54,10 @@ public class AudioManager : MonoBehaviour
         if (audioData == null)
         {
             isMusicOn = true;
-
             audioData = new AudioData();
-
             audioData.setIsMusicOn(isMusicOn);
 
             Save();
-
             Load();
         }
         else
@@ -66,6 +66,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // save sound settings to sound settings
     public void Save()
     {
         if (audioData != null)
@@ -75,6 +76,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // load sound settings from PlayerPrefs
     public void Load()
     {
         if (audioData != null)
@@ -84,14 +86,15 @@ public class AudioManager : MonoBehaviour
     }
 }
 
+// audio data to set or get settings whether music is on or not
 [Serializable]
 class AudioData
 {
     private bool isMusicOn;
 
-    public void setIsMusicOn(bool isMusicOn)
+    public void setIsMusicOn(bool isOn)
     {
-        this.isMusicOn = isMusicOn;
+       isMusicOn = isOn;
     }
 
     public bool getIsMusicOn()

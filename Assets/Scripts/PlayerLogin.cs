@@ -4,10 +4,12 @@ using UnityEngine.UI;
 
 public class PlayerLogin : MonoBehaviour
 {
-    private string userName;
     public InputField userInput;
-    public Button okButton;
     public Text message;
+    public Button startButton;
+    public Button okButton;
+    
+    private string userName;
     private string deviceId;
     
     public void Awake()
@@ -20,6 +22,13 @@ public class PlayerLogin : MonoBehaviour
             message.text = "Willkommen zurück!";
             userInput.gameObject.SetActive(false);
             okButton.gameObject.SetActive(false);
+            startButton.gameObject.SetActive(true);
+            
+        }
+        else
+        {
+            okButton.gameObject.SetActive(true);
+            startButton.gameObject.SetActive(false);
         }
     }
 
@@ -30,11 +39,13 @@ public class PlayerLogin : MonoBehaviour
             userName = userInput.text;
             SetUserData(userName);
             PlayerPrefs.SetString("deviceId", SystemInfo.deviceUniqueIdentifier);
+            PlayerPrefs.SetInt("coinsCounter", 50);
             PlayerPrefs.Save();
         }
         else
         {
             SetUserData("Guest");
+            PlayerPrefs.SetInt("coinsCounter", 50);
         }
     }
 

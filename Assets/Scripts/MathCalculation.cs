@@ -1,4 +1,6 @@
 using System;
+using GameSparks.Api.Requests;
+using GameSparks.Api.Responses;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,6 +10,8 @@ using Random = System.Random;
 public class MathCalculation : MonoBehaviour
 {
     public static MathCalculation instance;
+    public CoinsCounter coinsCounter;
+    public LeaderboardManager leaderboardManager;
 
     private float a, b;
     private float answer;
@@ -18,8 +22,7 @@ public class MathCalculation : MonoBehaviour
 
     public GameObject startDialog;
     public GameObject gameElements;
-
-
+    
     private int firstNumber;
     private int secondNumber;
     private MathOperations mathOperation;
@@ -78,6 +81,12 @@ public class MathCalculation : MonoBehaviour
         if (EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text == answer.ToString())
         {
             Debug.Log("Correct");
+            coinsCounter.SaveCoinsIntern(coinsCounter.GetCoinsIntern() + 10);
+            coinsCounter.UpdateCounterText();
+            Debug.Log(coinsCounter.GetCoinsIntern());
+            var coins = coinsCounter.GetCoinsIntern();
+            UpdateCoinsCounter(coins);
+            leaderboardManager.SendLeaderboardInfos(coins);
             StartMathTask();
         }
         else
@@ -85,6 +94,17 @@ public class MathCalculation : MonoBehaviour
             Debug.Log("False");
             StartMathTask();
         }
+    }
+    
+    public void UpdateCoinsCounter(int coins)
+    {
+        new LogEventRequest().SetEventKey("SAVE_PLAYER").SetEventAttribute("COINS", coins).Send((response) => {
+            if (!response.HasErrors) {
+                Debug.Log("Player Saved To GameSparks...");
+            } else {
+                Debug.Log("Error Saving Player Data...");
+            }
+        });
     }
 
     private object[] CreateMathTask(MathOperations mathOperator)
