@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameSparks.Api.Requests;
 using GameSparks.Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,12 +13,6 @@ public class CoinsCounter : MonoBehaviour
     void Start()
     {
         coinsCounter.text = GetCoinsIntern().ToString();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void UpdateCounterText()
@@ -33,6 +28,17 @@ public class CoinsCounter : MonoBehaviour
     public int GetCoinsIntern()
     {
         return PlayerPrefs.GetInt("coinsCounter");
+    }
+    
+    public void UpdateCoinsCounter(int coins)
+    {
+        new LogEventRequest().SetEventKey("SAVE_PLAYER").SetEventAttribute("COINS", coins).Send((response) => {
+            if (!response.HasErrors) {
+                Debug.Log("Player Saved To GameSparks...");
+            } else {
+                Debug.Log("Error Saving Player Data...");
+            }
+        });
     }
 
     public int GetCoinsFromPlayer()

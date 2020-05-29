@@ -130,6 +130,7 @@
           <e p="CoinsCounter.cs" t="Include" />
           <e p="GameContentManager.cs" t="Include" />
           <e p="GameSparksManager.cs" t="Include" />
+          <e p="GameUnlockManager.cs" t="Include" />
           <e p="LeaderboardManager.cs" t="Include" />
           <e p="MainMenuController.cs" t="Include" />
           <e p="MathCalculation.cs" t="Include" />
@@ -146,6 +147,7 @@
             <e p="ShareScreenScript.cs" t="Include" />
             <e p="TimerBarController.cs" t="Include" />
           </e>
+          <e p="SearchPlayerManager.cs" t="Include" />
           <e p="SettingsController.cs" t="Include" />
           <e p="TimerBar.cs" t="Include" />
         </e>

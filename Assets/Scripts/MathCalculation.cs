@@ -86,6 +86,7 @@ public class MathCalculation : MonoBehaviour
             Debug.Log(coinsCounter.GetCoinsIntern());
             var coins = coinsCounter.GetCoinsIntern();
             UpdateCoinsCounter(coins);
+            
             leaderboardManager.SendLeaderboardInfos(coins);
             StartMathTask();
         }

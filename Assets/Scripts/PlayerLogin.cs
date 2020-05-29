@@ -23,7 +23,6 @@ public class PlayerLogin : MonoBehaviour
             userInput.gameObject.SetActive(false);
             okButton.gameObject.SetActive(false);
             startButton.gameObject.SetActive(true);
-            
         }
         else
         {

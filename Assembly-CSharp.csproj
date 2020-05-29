@@ -123,6 +123,7 @@
      <Compile Include="Assets\Scripts\CoinsCounter.cs" />
      <Compile Include="Assets\Scripts\GameContentManager.cs" />
      <Compile Include="Assets\Scripts\GameSparksManager.cs" />
+     <Compile Include="Assets\Scripts\GameUnlockManager.cs" />
      <Compile Include="Assets\Scripts\LeaderboardManager.cs" />
      <Compile Include="Assets\Scripts\MainMenuController.cs" />
      <Compile Include="Assets\Scripts\MathCalculation.cs" />
@@ -137,6 +138,7 @@
      <Compile Include="Assets\Scripts\ScriptExamples\ModeMenuManager.cs" />
      <Compile Include="Assets\Scripts\ScriptExamples\ShareScreenScript.cs" />
      <Compile Include="Assets\Scripts\ScriptExamples\TimerBarController.cs" />
+     <Compile Include="Assets\Scripts\SearchPlayerManager.cs" />
      <Compile Include="Assets\Scripts\SettingsController.cs" />
      <Compile Include="Assets\Scripts\TimerBar.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
