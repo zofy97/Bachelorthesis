@@ -15,6 +15,7 @@ public class MathCalculation : MonoBehaviour
 
     private float a, b;
     private float answer;
+    private string answerOperationSign;
 
     public Text valueA, valueB;
     public Text operationSign;
@@ -29,7 +30,8 @@ public class MathCalculation : MonoBehaviour
     private int counter = 0;
     private int answerLocation;
 
-    void Awake()
+    // declare MathCalculation instance if not already done
+    private void Awake()
     {
         if (instance == null)
         {
@@ -37,11 +39,13 @@ public class MathCalculation : MonoBehaviour
         }
     }
 
+    // call method once scene is opened
     private void Start()
     {
         GetOperation();
     }
 
+    // get selected Operation from PlayerPrefs
     private void GetOperation()
     {
         var operation = PlayerPrefs.GetString("operation");
@@ -63,6 +67,10 @@ public class MathCalculation : MonoBehaviour
         }
     }
 
+    /*
+     * deactivate startDialog and activate gameElements to start the game
+     * math task with the selected math operation is created
+     */
     public void StartMathTask()
     {
         if (startDialog.active)
@@ -72,49 +80,41 @@ public class MathCalculation : MonoBehaviour
         }
 
         CreateMathTask(mathOperation);
-        Debug.Log(mathOperation);
     }
 
+    /*
+     * check whether answer is correct or not
+     * player gets 10 coins if answer was correct
+     * leaderboard gets updated and new task gets created
+     */
     public void CheckAnswer()
     {
-        Debug.Log(EventSystem.current.currentSelectedGameObject.name);
-        if (EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text == answer.ToString())
+        if (EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text == answer.ToString() || EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text == answerOperationSign)
         {
             Debug.Log("Correct");
             coinsCounter.SaveCoinsIntern(coinsCounter.GetCoinsIntern() + 10);
             coinsCounter.UpdateCounterText();
-            Debug.Log(coinsCounter.GetCoinsIntern());
+            
             var coins = coinsCounter.GetCoinsIntern();
-            UpdateCoinsCounter(coins);
+            coinsCounter.UpdateCoinsCounter(coins);
             
             leaderboardManager.SendLeaderboardInfos(coins);
+            
             StartMathTask();
         }
         else
         {
-            Debug.Log("False");
+            Debug.Log("false");
             StartMathTask();
         }
     }
-    
-    public void UpdateCoinsCounter(int coins)
+
+    /*
+     * create math task with alternating math operations
+     * generate random extra answers and select random location for the correct answer button
+     */
+    private void CreateMathTask(MathOperations mathOperator)
     {
-        new LogEventRequest().SetEventKey("SAVE_PLAYER").SetEventAttribute("COINS", coins).Send((response) => {
-            if (!response.HasErrors) {
-                Debug.Log("Player Saved To GameSparks...");
-            } else {
-                Debug.Log("Error Saving Player Data...");
-            }
-        });
-    }
-
-    private object[] CreateMathTask(MathOperations mathOperator)
-    {
-        //var numbers = GenerateRandomNumbers();
-
-        //var a = numbers[0];
-        //var b = numbers[1];
-
         switch (mathOperator)
         {
             case MathOperations.LineCalculation:
@@ -122,7 +122,6 @@ public class MathCalculation : MonoBehaviour
                     Addition();
                 else
                     Subtraction();
-                
                 break;
             case MathOperations.PointCalculation:
                 if (counter % 2 == 0)
@@ -134,40 +133,51 @@ public class MathCalculation : MonoBehaviour
                 SmallerOrBigger();
                 break;
             case MathOperations.Mixed:
-                Addition();
-                Subtraction();
-                Multiplication();
-                Division();
-                counter++;
-                SmallerOrBigger();
+                if (counter % 4 == 0)
+                    Multiplication();
+                else if (counter % 3 == 0)
+                    Division();
+                else if (counter % 2 == 0)
+                    Addition();
+                else 
+                    Subtraction();
                 break;
         }
 
-        var extraAnswers = new int[4];
-        var random = new Random();
-
-        extraAnswers[0] = (int) answer + random.Next(3, 11);
-        extraAnswers[1] = (int) answer - random.Next(7, 10);
-        extraAnswers[2] = (int) answer * random.Next(2, 4);
-        extraAnswers[3] = (int) answer - random.Next(4, 7);
         
-
-        for (int i = 0; i < answerButtons.Length; i++)
+        var random = new Random();
+        if (mathOperator != MathOperations.SmallerOrBigger)
         {
-            if (extraAnswers[i] == answer)
-                extraAnswers[i]++;
-            if (i != answerLocation)
-                answerButtons[i].text = extraAnswers[i].ToString();
+            var extraAnswers = new int[4];
+
+            extraAnswers[0] = (int) answer + random.Next(3, 11);
+            extraAnswers[1] = (int) answer - random.Next(7, 10);
+            extraAnswers[2] = (int) answer * random.Next(2, 4);
+            extraAnswers[3] = (int) answer - random.Next(4, 7);
+
+            for (var i = 0; i < answerButtons.Length; i++)
+            {
+                if (extraAnswers[i] == answer)
+                    extraAnswers[i]++;
+                if (i != answerLocation)
+                    answerButtons[i].text = extraAnswers[i].ToString();
+            }
+
+            answerLocation = random.Next(0, 3);
+            answerButtons[answerLocation].text = answer.ToString();
         }
-        //answerButtons[0].text = extraAnswers[0].ToString();
-        //answerButtons[1].text = extraAnswers[1].ToString();
-        //answerButtons[2].text = extraAnswers[2].ToString();
+        else
+        {
+            Debug.Log("small or bigger");
 
-        var task = new object[] {a, b, mathOperator, answer};
-
-        return task;
+            answerButtons[0].text = "<";
+            answerButtons[1].text = "=";
+            answerButtons[2].text = ">";
+            answerButtons[3].text = "";
+        }
     }
 
+    // generate random numbers for math tasks between min and max number
     private int[] GenerateRandomNumbers(int min, int max)
     {
         var r = new Random();
@@ -177,6 +187,7 @@ public class MathCalculation : MonoBehaviour
         return new[] {firstNumber, secondNumber};
     }
 
+    // generate addition math tasks
     private void Addition()
     {
         var numbers = GenerateRandomNumbers(1, 15);
@@ -189,13 +200,11 @@ public class MathCalculation : MonoBehaviour
         valueB.text = b.ToString();
         operationSign.text = "+";
 
-        var random = new Random();
-        answerLocation  = random.Next(0, 3);
-        answerButtons[answerLocation].text = answer.ToString();
-
         counter++;
     }
 
+    
+    // generate subtraction math tasks
     private void Subtraction()
     {
         int[] numbers = GenerateRandomNumbers(1, 15);
@@ -209,14 +218,12 @@ public class MathCalculation : MonoBehaviour
         valueA.text = a.ToString();
         valueB.text = b.ToString();
         operationSign.text = "-";
-        
-        var random = new Random();
-        answerLocation  = random.Next(0, 3);
-        answerButtons[answerLocation].text = answer.ToString();
 
         counter++;
     }
 
+    
+    // generate multiplication math tasks
     private void Multiplication()
     {
         var numbers = GenerateRandomNumbers(1, 10);
@@ -229,11 +236,10 @@ public class MathCalculation : MonoBehaviour
         valueB.text = b.ToString();
         operationSign.text = "*";
         
-        var random = new Random();
-        answerLocation  = random.Next(0, 3);
-        answerButtons[answerLocation].text = answer.ToString();
+        counter++;
     }
-
+    
+    // generate division math tasks
     private void Division()
     {
         var numbers = GenerateRandomNumbers(1, 30);
@@ -248,11 +254,10 @@ public class MathCalculation : MonoBehaviour
         valueB.text = b.ToString();
         operationSign.text = "/";
         
-        var random = new Random();
-        answerLocation  = random.Next(0, 3);
-        answerButtons[answerLocation].text = answer.ToString();
+        counter++;
     }
 
+    // generation smaller or bigger task
     private void SmallerOrBigger()
     {
         var numbers = GenerateRandomNumbers(1, 99);
@@ -262,45 +267,18 @@ public class MathCalculation : MonoBehaviour
         valueA.text = a.ToString();
         valueB.text = b.ToString();
 
+        operationSign.text = "?";
+
         if (a < b)
-            operationSign.text = "<";
+            answerOperationSign = "<";
         else if (a > b)
-            operationSign.text = ">";
+            answerOperationSign = ">";
         else
-            operationSign.text = "=";
-    }
-
-    public object[] SelectAdditionSubtraction()
-    {
-        PlayerPrefs.SetString("operation", "addition");
-
-        var taskSet = new object[9];
-        for (var i = 1; i < taskSet.Length; i++)
-        {
-            //taskSet[i-1] = CreateMathTask(MathOperations.Addition);
-            //taskSet[i] = CreateMathTask(MathOperations.Subtraction);
-            i++;
-        }
-
-        return taskSet;
-    }
-
-    public object[] SelectMultiplicationDivision()
-    {
-        PlayerPrefs.SetString("operation", "multiplication");
-
-        var taskSet = new object[9];
-        for (var i = 1; i < taskSet.Length; i++)
-        {
-            //taskSet[i-1] = CreateMathTask(MathOperations.Multiplication);
-            //taskSet[i] = CreateMathTask(MathOperations.Division);
-            i++;
-        }
-
-        return taskSet;
+            answerOperationSign = "=";
     }
 }
 
+// four different math operation modes
 public enum MathOperations
 {
     LineCalculation,

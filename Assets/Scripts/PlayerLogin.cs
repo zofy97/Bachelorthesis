@@ -8,6 +8,7 @@ public class PlayerLogin : MonoBehaviour
     public Text message;
     public Button startButton;
     public Button okButton;
+    public GameObject playerName;
     
     private string userName;
     private string deviceId;
@@ -23,11 +24,14 @@ public class PlayerLogin : MonoBehaviour
             userInput.gameObject.SetActive(false);
             okButton.gameObject.SetActive(false);
             startButton.gameObject.SetActive(true);
+            playerName.gameObject.SetActive(true);
+            GetUserData();
         }
         else
         {
             okButton.gameObject.SetActive(true);
             startButton.gameObject.SetActive(false);
+            playerName.gameObject.SetActive(false);
         }
     }
 
@@ -67,23 +71,22 @@ public class PlayerLogin : MonoBehaviour
             });
     }
 
-    private string GetUserData()
+    private void GetUserData()
     {
-        var displayName = "Guest";
         
         new GameSparks.Api.Requests.AccountDetailsRequest()
             .Send((response) =>
             {
-                displayName = response.DisplayName;
                 if (!response.HasErrors)
                 {
                     Debug.Log("Player Name found");
+                    playerName.GetComponentInChildren<Text>().text = response.DisplayName;
                 }
                 else
                 {
                     Debug.Log("Error");
+                    playerName.GetComponentInChildren<Text>().text = "Gast";
                 }
             });
-        return displayName;
     }
 }

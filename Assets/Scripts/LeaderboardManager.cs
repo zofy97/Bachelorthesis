@@ -25,7 +25,7 @@ public class LeaderboardManager : MonoBehaviour
 
         new GameSparks.Api.Requests.LeaderboardDataRequest ()
             .SetLeaderboardShortCode ("SCORE_LEADERBOARD")
-            .SetEntryCount(100) // we need to parse this text input, since the entry count only takes long
+            .SetEntryCount(100) // parse this text input, since the entry count only takes long
             .Send ((response) => {
 
                 if(!response.HasErrors)
@@ -37,9 +37,9 @@ public class LeaderboardManager : MonoBehaviour
                     {
                         // get rank directly
                         int rank = (int)entry.Rank; 
-                        playerName.text = entry.UserName;
+                        playerName.text += entry.UserName + "\n";
                         // get the key, in order to get the score
-                        score.text = entry.JSONData["SCORE"].ToString(); 
+                        score.text += entry.JSONData["SCORE"] + "\n"; 
                         Debug.Log("Rank:" + rank + " Name:" + playerName + " \n Score:" + score);
                         
                     }

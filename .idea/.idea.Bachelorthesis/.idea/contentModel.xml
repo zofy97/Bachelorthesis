@@ -149,6 +149,8 @@
           </e>
           <e p="SearchPlayerManager.cs" t="Include" />
           <e p="SettingsController.cs" t="Include" />
+          <e p="Space.cs" t="Include" />
+          <e p="TicTacToeGameController.cs" t="Include" />
           <e p="TimerBar.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
