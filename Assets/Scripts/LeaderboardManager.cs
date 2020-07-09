@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// script to send and receive leaderboard information
 public class LeaderboardManager : MonoBehaviour
 {
     public Text playerName;
@@ -10,6 +11,7 @@ public class LeaderboardManager : MonoBehaviour
         GameSparks.Api.Messages.NewHighScoreMessage.Listener += HighScoreMessageHandler;
     }
 
+    // on start call method to get leaderboard
     public void Start()
     {
         GetLeaderboard();
@@ -19,13 +21,14 @@ public class LeaderboardManager : MonoBehaviour
         Debug.Log("NEW HIGH SCORE \n " + _message.LeaderboardName);
     }
 
+    // get Leaderboard from GameSparks database
     public void GetLeaderboard()
     {
         Debug.Log ("Fetching Leaderboard Data...");
 
         new GameSparks.Api.Requests.LeaderboardDataRequest ()
             .SetLeaderboardShortCode ("SCORE_LEADERBOARD")
-            .SetEntryCount(100) // parse this text input, since the entry count only takes long
+            .SetEntryCount(100)
             .Send ((response) => {
 
                 if(!response.HasErrors)
@@ -52,6 +55,7 @@ public class LeaderboardManager : MonoBehaviour
             });
     }
 
+    // send new leaderboard information to GameSparks database
     public void SendLeaderboardInfos(int scoreCount)
     {
         new GameSparks.Api.Requests.LogEventRequest().SetEventKey("SUBMIT_SCORE").SetEventAttribute("SCORE", scoreCount).Send(

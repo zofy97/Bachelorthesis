@@ -1,7 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* script for player login
+ * saves new player to database
+ * or gets username from database for registered player
+ */
 public class PlayerLogin : MonoBehaviour
 {
     public InputField userInput;
@@ -13,6 +16,7 @@ public class PlayerLogin : MonoBehaviour
     private string userName;
     private string deviceId;
     
+    // on awake check if deviceId of player is know or new
     public void Awake()
     {
         userInput.gameObject.SetActive(true);
@@ -35,6 +39,9 @@ public class PlayerLogin : MonoBehaviour
         }
     }
 
+    /* gets selected username of player and saves deviceId to player prefs
+     * gives new player starting amount of coins
+     */
     public void UserLogin()
     {
         if (userInput.text != null && (userInput.text != null || userInput.text.Length != 0))
@@ -52,6 +59,7 @@ public class PlayerLogin : MonoBehaviour
         }
     }
 
+    // saves new user to GameSparks database
     private void SetUserData(string displayName)
     {
         new GameSparks.Api.Requests.RegistrationRequest()
@@ -71,6 +79,7 @@ public class PlayerLogin : MonoBehaviour
             });
     }
 
+    // gets username from GameSparks database
     private void GetUserData()
     {
         

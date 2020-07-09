@@ -1,12 +1,12 @@
-using System;
-using GameSparks.Api.Requests;
-using GameSparks.Api.Responses;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Object = System.Object;
 using Random = System.Random;
 
+/* script for math game
+ * gets selected mode and generates appropriate math task
+ * check answer and adds coins to player profile if correct answer is selected
+ */
 public class MathCalculation : MonoBehaviour
 {
     public static MathCalculation instance;

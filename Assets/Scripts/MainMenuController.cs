@@ -1,41 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Net.Mime;
-//using System.Web.UI.WebControls;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-/// <summary>
-/// This script control the main menu buttons and animations of mainmenu
-/// </summary>
-
+// script for settings button
 public class MainMenuController : MonoBehaviour {
 
-    //we get the ref to our setting button animator
-    //we have serialized field because the variable is private and we want to access it from inspector
     [SerializeField]
     private Animator settingButtonAnim;
-
-    //this bool tell wheater the buttons setting button holder are hidden or not 
     private bool hidden;
-    //this prevent the user from touching the setting button when the setting button animation is playing
     private bool canTouchSettingButtons;
 
-    //ref to music button and its sprite
     [SerializeField]
     private Button musicBtn;
     [SerializeField]
     private Sprite[] musicBtnSprite;
 
     private AudioSource clickSound;
-
-
-
-
-	// Use this for initialization
+    
+    // on start music status is checked and suitable sprite for button selected
 	void Start ()
     {
-        //at start we check the music status and the assign the sprite to the music button and vol to game
         if (AudioManager.singleton.isMusicOn)
         {
             AudioListener.volume = 1;
@@ -48,27 +32,19 @@ public class MainMenuController : MonoBehaviour {
         }
 
         clickSound = GetComponent<AudioSource>();
-
-        //at start we want this bool to be true
         canTouchSettingButtons = true;
         hidden = true;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-    //this is used to control the animation of setting button
+    /* when button is clicked slide in animation is played when button is hidden
+     * otherwise slide out animation
+     */
     IEnumerator DisableWhilePlayingSettingAnim()
     {
-        //is check if button is click
         if (canTouchSettingButtons)
         {
-            //we check if the buttons are hidden
             if (hidden)
             {
-                //if yes then we play slideIn animation and wait for 1.2 sec and the we again make the button interactable
                 canTouchSettingButtons = false;
                 settingButtonAnim.Play("SlideIn");
                 hidden = false;
@@ -83,37 +59,19 @@ public class MainMenuController : MonoBehaviour {
                 yield return new WaitForSeconds(1.2f);
                 canTouchSettingButtons = true;
             }
-
-
         }
     }
 
-    //method which we will assign to setting button
+    // when user clicks on setting button coroutine starts
     public void SettingBtn()
     {
-        //when setting button is clicked we start out coroutine
         StartCoroutine(DisableWhilePlayingSettingAnim());
         clickSound.Play();
     }
 
-    //method which we will assign to play button
-    public void PlayButton()
-    {
-        //Application.LoadLevel("ModeSelector"); // if you are using unity below 5.3 version
-        SceneManager.LoadScene("ModeSelector");//use this for 5.3 version
-        clickSound.Play();
-    }
-
-    //method which we will assign to quit button
-    /*public void QuitButton()
-    {
-        MediaTypeNames.Application.Quit();
-    }*/
-
-    //method which we will assign to music button
+    // turns music on or off when music button is clicked
     public void MusicButton()
     {
-        //it check the music status wheather its on of not and when we click the button it make is on or off respectively
         clickSound.Play();
 
         if (AudioManager.singleton.isMusicOn)
@@ -131,32 +89,4 @@ public class MainMenuController : MonoBehaviour {
             AudioManager.singleton.Save();
         }
     }
-
-    //method which we will assign to more games button
-    public void MoreGameButton()
-    {
-        //here you can provide link of your other games 
-        //Application.OpenURL("other game url address");
-        clickSound.Play();
-    }
-
-    //method which we will assign to  info button
-    public void InfoButton()
-    {//this is to provide the info on how to play game
-        clickSound.Play();
-    }
-
-    //method which we will assign to rate button
-    public void RateButton()
-    {
-        //here provide the link of your game so player can rate it
-        //Application.OpenURL("game url address");
-        clickSound.Play();
-    }
-
-
-
-
-
-
 }

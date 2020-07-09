@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// script to set text of selected button and disable interactability
 public class Space : MonoBehaviour
 {
     public Button button;
@@ -14,7 +15,7 @@ public class Space : MonoBehaviour
         ticTacToeGameController = controller;
     }
 
-    // set button text and intractability
+    // set button text and interactability
     public void SetSpace()
     {
         buttonText.text = ticTacToeGameController.GetSide();

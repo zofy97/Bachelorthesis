@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// script for timer during math game
 public class TimerBar : MonoBehaviour
 {
     private bool countDown;
     public Slider timerBar;
+    // amount of seconds for game
     public float countDownTime = 10.0f;
     public Text seconds;
 
+    // on awake set timer to selected seconds but countdown is not yet started
     private void Awake()
     {
         countDown = false;
         timerBar.maxValue = countDownTime;
     }
 
+    /* on update seconds are counted down
+     * once seconds are over previous scene is loaded
+     */
     private void Update()
     {
         if (countDown)
@@ -31,6 +34,7 @@ public class TimerBar : MonoBehaviour
         }
     }
 
+    // called once countdown starts
     public void CountDownStart()
     {
         countDown = true;

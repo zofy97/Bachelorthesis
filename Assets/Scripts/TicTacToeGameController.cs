@@ -1,7 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* game logic script for tic tac toe mini game
+ * https://www.red-gate.com/simple-talk/dotnet/c-programming/using-unity-ui-and-c-to-create-a-tic-tac-toe-game/
+ */
 public class TicTacToeGameController : MonoBehaviour
 {
     // game objects in Unity
@@ -71,6 +73,7 @@ public class TicTacToeGameController : MonoBehaviour
             GameOver();
         if (moves >= 9)
         {
+            // show dialog when all moves are used up
             gameOverDialog.SetActive(true);
             gameOverText.text = "Unentschieden!";
             restartButton.SetActive(true);
