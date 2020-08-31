@@ -48,19 +48,27 @@ public class MathCalculation : MonoBehaviour
     // get selected Operation from PlayerPrefs
     private void GetOperation()
     {
+        // get saved mode
         var operation = PlayerPrefs.GetString("operation");
 
         switch (operation)
         {
+            // set mode to line calculation
             case "lineCalculation":
                 mathOperation = MathOperations.LineCalculation;
                 break;
+            
+            // set mode to point calculation
             case "pointCalculation":
                 mathOperation = MathOperations.PointCalculation;
                 break;
+            
+            // set mode to smaller or bigger
             case "smallerOrBigger":
                 mathOperation = MathOperations.SmallerOrBigger;
                 break;
+            
+            // set mode to mixed
             case "mixed":
                 mathOperation = MathOperations.Mixed;
                 break;

@@ -78,6 +78,7 @@ public class TicTacToeGameController : MonoBehaviour
             gameOverText.text = "Unentschieden!";
             restartButton.SetActive(true);
         }
+        // switch to other side
         SwitchSides();
     }
 

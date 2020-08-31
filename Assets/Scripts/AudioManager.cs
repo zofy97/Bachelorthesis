@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// script to control sound settings
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager singleton;
