@@ -23,6 +23,7 @@
           <e p="GameSparksSettings.cs" t="Include" />
           <e p="GameSparksUnity.cs" t="Include" />
           <e p="link.xml" t="Include" />
+          <e p="MyGameSparks.cs" t="Include" />
           <e p="Platforms" t="Include">
             <e p="DefaultPlatform.cs" t="Include" />
             <e p="IControlledTimer.cs" t="Include" />
